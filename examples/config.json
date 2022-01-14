@@ -1,0 +1,419 @@
+{
+  "artifactCount": 100,
+  "allowDuplicates": false,
+  "layers": [
+    {
+      "name": "backgrounds",
+      "order": 0,
+      "assets": [
+        {
+          "name": "blue",
+          "url": "backgrounds/blue.png",
+          "weight": 10
+        },
+        {
+          "name": "brown",
+          "url": "backgrounds/brown.png",
+          "weight": 10
+        },
+        {
+          "name": "green",
+          "url": "backgrounds/green.png",
+          "weight": 10
+        },
+        {
+          "name": "purple",
+          "url": "backgrounds/purple.png",
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "name": "punks",
+      "order": 0,
+      "assets": [
+        {
+          "name": "alien",
+          "url": "punks/alien.png",
+          "weight": 10
+        },
+        {
+          "name": "ape",
+          "url": "punks/ape.png",
+          "weight": 10
+        },
+        {
+          "name": "female1",
+          "url": "punks/female1.png",
+          "weight": 10
+        },
+        {
+          "name": "female2",
+          "url": "punks/female2.png",
+          "weight": 10
+        },
+        {
+          "name": "female3",
+          "url": "punks/female3.png",
+          "weight": 10
+        },
+        {
+          "name": "female4",
+          "url": "punks/female4.png",
+          "weight": 10
+        },
+        {
+          "name": "male1",
+          "url": "punks/male1.png",
+          "weight": 10
+        },
+        {
+          "name": "male2",
+          "url": "punks/male2.png",
+          "weight": 10
+        },
+        {
+          "name": "male3",
+          "url": "punks/male3.png",
+          "weight": 10
+        },
+        {
+          "name": "male4",
+          "url": "punks/male4.png",
+          "weight": 10
+        },
+        {
+          "name": "zombie",
+          "url": "punks/zombie.png",
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "name": "beards",
+      "order": 0,
+      "assets": [
+        {
+          "name": "big_beard",
+          "url": "beards/big_beard.png",
+          "weight": 10
+        },
+        {
+          "name": "chinstrap",
+          "url": "beards/chinstrap.png",
+          "weight": 10
+        },
+        {
+          "name": "fron_beard_dark",
+          "url": "beards/fron_beard_dark.png",
+          "weight": 10
+        },
+        {
+          "name": "front_beard",
+          "url": "beards/front_beard.png",
+          "weight": 10
+        },
+        {
+          "name": "goat",
+          "url": "beards/goat.png",
+          "weight": 10
+        },
+        {
+          "name": "luxurious_beard",
+          "url": "beards/luxurious_beard.png",
+          "weight": 10
+        },
+        {
+          "name": "mustache",
+          "url": "beards/mustache.png",
+          "weight": 10
+        },
+        {
+          "name": "muttonchops",
+          "url": "beards/muttonchops.png",
+          "weight": 10
+        },
+        {
+          "name": "normal_beard",
+          "url": "beards/normal_beard.png",
+          "weight": 10
+        },
+        {
+          "name": "normal_beard_black",
+          "url": "beards/normal_beard_black.png",
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "name": "chains",
+      "order": 0,
+      "assets": [
+        {
+          "name": "gold_chain",
+          "url": "chains/gold_chain.png",
+          "weight": 10
+        },
+        {
+          "name": "silver_chain",
+          "url": "chains/silver_chain.png",
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "name": "cheeks",
+      "order": 0,
+      "assets": [
+        {
+          "name": "rosy_cheeks",
+          "url": "cheeks/rosy_cheeks.png",
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "name": "glasses",
+      "order": 0,
+      "assets": [
+        {
+          "name": "3D_glasses",
+          "url": "glasses/3D_glasses.png",
+          "weight": 10
+        },
+        {
+          "name": "eye_mask",
+          "url": "glasses/eye_mask.png",
+          "weight": 10
+        },
+        {
+          "name": "small_shades",
+          "url": "glasses/small_shades.png",
+          "weight": 10
+        },
+        {
+          "name": "vr",
+          "url": "glasses/vr.png",
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "name": "mouths",
+      "order": 0,
+      "assets": [
+        {
+          "name": "buck_teeth",
+          "url": "mouths/buck_teeth.png",
+          "weight": 10
+        },
+        {
+          "name": "cigarette",
+          "url": "mouths/cigarette.png",
+          "weight": 10
+        },
+        {
+          "name": "medical_mask",
+          "url": "mouths/medical_mask.png",
+          "weight": 10
+        },
+        {
+          "name": "pipe",
+          "url": "mouths/pipe.png",
+          "weight": 10
+        },
+        {
+          "name": "vape",
+          "url": "mouths/vape.png",
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "name": "tops",
+      "order": 0,
+      "assets": [
+        {
+          "name": "beanie",
+          "url": "tops/beanie.png",
+          "weight": 10
+        },
+        {
+          "name": "blone_bob",
+          "url": "tops/blone_bob.png",
+          "weight": 10
+        },
+        {
+          "name": "blone_short",
+          "url": "tops/blone_short.png",
+          "weight": 10
+        },
+        {
+          "name": "cap",
+          "url": "tops/cap.png",
+          "weight": 10
+        },
+        {
+          "name": "cap_forward",
+          "url": "tops/cap_forward.png",
+          "weight": 10
+        },
+        {
+          "name": "choker",
+          "url": "tops/choker.png",
+          "weight": 10
+        },
+        {
+          "name": "clown_hair_green",
+          "url": "tops/clown_hair_green.png",
+          "weight": 10
+        },
+        {
+          "name": "cowboy_hat",
+          "url": "tops/cowboy_hat.png",
+          "weight": 10
+        },
+        {
+          "name": "crazy_hair",
+          "url": "tops/crazy_hair.png",
+          "weight": 10
+        },
+        {
+          "name": "dark_hair",
+          "url": "tops/dark_hair.png",
+          "weight": 10
+        },
+        {
+          "name": "do-rag",
+          "url": "tops/do-rag.png",
+          "weight": 10
+        },
+        {
+          "name": "fedora",
+          "url": "tops/fedora.png",
+          "weight": 10
+        },
+        {
+          "name": "frumpy_hair",
+          "url": "tops/frumpy_hair.png",
+          "weight": 10
+        },
+        {
+          "name": "half_shaved",
+          "url": "tops/half_shaved.png",
+          "weight": 10
+        },
+        {
+          "name": "headband",
+          "url": "tops/headband.png",
+          "weight": 10
+        },
+        {
+          "name": "hoodie",
+          "url": "tops/hoodie.png",
+          "weight": 10
+        },
+        {
+          "name": "knitted_cap",
+          "url": "tops/knitted_cap.png",
+          "weight": 10
+        },
+        {
+          "name": "orange_side",
+          "url": "tops/orange_side.png",
+          "weight": 10
+        },
+        {
+          "name": "peak_spike",
+          "url": "tops/peak_spike.png",
+          "weight": 10
+        },
+        {
+          "name": "pigtails",
+          "url": "tops/pigtails.png",
+          "weight": 10
+        },
+        {
+          "name": "pilot_helmet",
+          "url": "tops/pilot_helmet.png",
+          "weight": 10
+        },
+        {
+          "name": "pink_with_hat",
+          "url": "tops/pink_with_hat.png",
+          "weight": 10
+        },
+        {
+          "name": "police__cap",
+          "url": "tops/police__cap.png",
+          "weight": 10
+        },
+        {
+          "name": "purple_hair",
+          "url": "tops/purple_hair.png",
+          "weight": 10
+        },
+        {
+          "name": "red_mohawk",
+          "url": "tops/red_mohawk.png",
+          "weight": 10
+        },
+        {
+          "name": "straight_hair",
+          "url": "tops/straight_hair.png",
+          "weight": 10
+        },
+        {
+          "name": "straight_hair_blonde",
+          "url": "tops/straight_hair_blonde.png",
+          "weight": 10
+        },
+        {
+          "name": "straight_hair_dark",
+          "url": "tops/straight_hair_dark.png",
+          "weight": 10
+        },
+        {
+          "name": "tassle_hat",
+          "url": "tops/tassle_hat.png",
+          "weight": 10
+        },
+        {
+          "name": "tiara",
+          "url": "tops/tiara.png",
+          "weight": 10
+        },
+        {
+          "name": "top_hat",
+          "url": "tops/top_hat.png",
+          "weight": 10
+        },
+        {
+          "name": "vampire_hair",
+          "url": "tops/vampire_hair.png",
+          "weight": 10
+        },
+        {
+          "name": "welding_goggles",
+          "url": "tops/welding_goggles.png",
+          "weight": 10
+        },
+        {
+          "name": "wild_blone",
+          "url": "tops/wild_blone.png",
+          "weight": 10
+        },
+        {
+          "name": "wild_hair",
+          "url": "tops/wild_hair.png",
+          "weight": 10
+        },
+        {
+          "name": "wild_white_hair",
+          "url": "tops/wild_white_hair.png",
+          "weight": 10
+        }
+      ]
+    }
+  ]
+}
