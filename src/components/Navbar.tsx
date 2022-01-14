@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Logo from '../assets/logo.png';
+import HelpIcon from '../assets/help.svg';
 import { AppRoutes } from '../pages/routes';
 import { Strings } from '../strings';
 import { FontSize, colors, spacing } from '../theme';
@@ -42,20 +43,38 @@ export const Navbar: React.FC = () => {
     <Box
       width="100%"
       height={spacing.$15}
-      gap={spacing.$5}
-      alignItems="center"
+      display="flex"
       boxSizing="border-box"
       backgroundColor={colors.ACCENT_LIGHT}
-      boxShadow={`${colors.SHADOW} 0 0 15px 3px`}
+      justifyContent="space-between"
     >
-      <HeroLink to={AppRoutes.DASHBOARD}>
-        <Box height="100%" alignItems="center" gap={spacing.$2}>
-          <img src={Logo} alt="logo" height="30px" width="30px" />
-          <Text text={Strings.app_name} bold underline size={FontSize.TITLE} />
-        </Box>
-      </HeroLink>
+      <Box gap={spacing.$5} alignItems="center">
+        <HeroLink to={AppRoutes.DASHBOARD}>
+          <Box height="100%" alignItems="center" gap={spacing.$2}>
+            <img src={Logo} alt="logo" height="30px" width="30px" />
+            <Text
+              text={Strings.app_name}
+              bold
+              underline
+              size={FontSize.TITLE}
+            />
+          </Box>
+        </HeroLink>
 
-      <TabBar tabs={tabs} activeIndex={selected} onChange={onChange} />
+        <TabBar tabs={tabs} activeIndex={selected} onChange={onChange} />
+      </Box>
+
+      <Link to="https://github.com/yebrahim/nftlayers">
+        <Box gap={spacing.$2} alignItems="center" margin={spacing.$5}>
+          <img
+            src={HelpIcon}
+            alt="help"
+            height={spacing.$4}
+            width={spacing.$4}
+          />
+          <Text text={Strings.help} bold size={FontSize.LARGE} />
+        </Box>
+      </Link>
     </Box>
   );
 };
