@@ -9,16 +9,24 @@ export interface PreviewOutput {
 
 export async function preview(config: GeneratorConfig): Promise<PreviewOutput> {
   const indices = config.layers.map(getRandomAssetIndex);
-  const images = config.layers.map((layer, layerIdx) => layer.assets[indices[layerIdx]].contents);
+  const images = config.layers.map(
+    (layer, layerIdx) => layer.assets[indices[layerIdx]].contents
+  );
   return { assetIndices: indices, image: await mergeImages(images) };
 }
 
-export async function generate(originalConfig: GeneratorConfig): Promise<Blob | Error> {
+export async function generate(
+  originalConfig: GeneratorConfig,
+  progressCb: (progress: number) => void
+): Promise<Blob | Error> {
   const config = JSON.parse(JSON.stringify(originalConfig)) as GeneratorConfig;
   const hashes: string[] = [];
   const zip = new JSZip();
 
-  const space = config.layers.reduce((prev, curr) => prev * curr.assets.length, 1);
+  const space = config.layers.reduce(
+    (prev, curr) => prev * curr.assets.length,
+    1
+  );
   if (space < config.outputCount && !config.allowDuplicates) {
     return new Error(
       `Too few assets used, will not be able to generate ${config.outputCount} images unless duplicates are allowed.`
@@ -43,10 +51,14 @@ export async function generate(originalConfig: GeneratorConfig): Promise<Blob | 
     }
 
     // Decrement the weights
-    config.layers.forEach((layer, layerIdx) => layer.assets[indices[layerIdx]].weight--);
+    config.layers.forEach(
+      (layer, layerIdx) => layer.assets[indices[layerIdx]].weight--
+    );
 
     // Get the assets
-    const assets = config.layers.map((layer, layerIdx) => layer.assets[indices[layerIdx]].contents);
+    const assets = config.layers.map(
+      (layer, layerIdx) => layer.assets[indices[layerIdx]].contents
+    );
 
     // Compose
     const image = await mergeImages(assets);
@@ -54,6 +66,7 @@ export async function generate(originalConfig: GeneratorConfig): Promise<Blob | 
     zip.file(`${iterations}.png`, base64, { base64: true });
 
     hashes.push(hash);
+    progressCb((hashes.length / config.outputCount) * 100);
   }
 
   return zip.generateAsync({ type: 'blob' });

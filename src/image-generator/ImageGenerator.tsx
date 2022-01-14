@@ -16,6 +16,7 @@ import { generate } from '../lib/generator';
 import { Modal, ModalButtonSet } from '../components/Modal';
 import { Preview } from './Preview';
 import { EVENTS, sendEvent } from '../events';
+import { ProgressButton } from '../components/ProgressButton';
 
 const DEFAULT_OUTPUT_COUNT = 100;
 const DEFAULT_ALLOW_DUPLICATES = false;
@@ -24,8 +25,11 @@ const PERSISTENCE_KEY = 'config';
 export const ImageGenerator: React.FC = () => {
   const [layers, setLayers] = useState<Layer[]>([]);
   const [outputCount, setOutputCount] = useState(DEFAULT_OUTPUT_COUNT);
-  const [allowDuplicates, setAllowDuplicates] = useState(DEFAULT_ALLOW_DUPLICATES);
+  const [allowDuplicates, setAllowDuplicates] = useState(
+    DEFAULT_ALLOW_DUPLICATES
+  );
   const [openPreview, setOpenPreview] = useState(false);
+  const [generateProgress, setGenerateProgress] = useState(-1);
 
   // First load of remote config from local storage if exists
   useEffect(() => {
@@ -51,11 +55,14 @@ export const ImageGenerator: React.FC = () => {
     [allowDuplicates, outputCount, layers]
   );
 
-  const outputCountHandler = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const n = Number.parseInt(e.target.value);
-    if (n < 0) return;
-    setOutputCount(n);
-  }, []);
+  const outputCountHandler = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const n = Number.parseInt(e.target.value);
+      if (n < 0) return;
+      setOutputCount(n);
+    },
+    []
+  );
 
   const allowDuplicatesHandler = useCallback(
     () => setAllowDuplicates(!allowDuplicates),
@@ -76,15 +83,26 @@ export const ImageGenerator: React.FC = () => {
       return;
     }
 
-    const result = await generate(config);
-    if (result instanceof Error) {
-      alert(result);
-      sendEvent(EVENTS.export_err);
-      return;
-    }
-    sendEvent(EVENTS.export_ok, { size: config.outputCount, duplicates: config.allowDuplicates });
+    setGenerateProgress(0);
+    try {
+      const result = await generate(config, (progress) =>
+        setGenerateProgress(progress)
+      );
+      if (result instanceof Error) {
+        alert(result);
+        sendEvent(EVENTS.export_err);
+        return;
+      }
 
-    saveAs(result, 'images.zip');
+      sendEvent(EVENTS.export_ok, {
+        size: config.outputCount,
+        duplicates: config.allowDuplicates,
+      });
+
+      saveAs(result, 'images.zip');
+    } finally {
+      setGenerateProgress(-1);
+    }
   }, [config]);
 
   return (
@@ -105,14 +123,29 @@ export const ImageGenerator: React.FC = () => {
           />
         </Box>
 
-        <Box gap={spacing.$5}>
-          <Button onClick={previewCallback} title={Strings.preview} icon={PreviewIcon} />
-          <Button
-            onClick={exportCallback}
-            mode="primary"
-            title={Strings.download}
-            icon={DownloadIcon}
-          />
+        <Box gap={spacing.$5} alignItems="center">
+          {generateProgress === -1 ? (
+            <>
+              <Button
+                onClick={previewCallback}
+                title={Strings.preview}
+                icon={PreviewIcon}
+              />
+              <Button
+                onClick={exportCallback}
+                mode="primary"
+                title={Strings.download}
+                icon={DownloadIcon}
+                width={spacing.$30}
+              />
+            </>
+          ) : (
+            <ProgressButton
+              percentage={generateProgress}
+              width={spacing.$60}
+              height={spacing.$2}
+            />
+          )}
         </Box>
       </Box>
 
@@ -124,7 +157,9 @@ export const ImageGenerator: React.FC = () => {
         <Preview config={config} />
       </Modal>
 
-      {!!config && !!config.layers && <LayersEditor layers={config.layers} setLayers={setLayers} />}
+      {!!config && !!config.layers && (
+        <LayersEditor layers={config.layers} setLayers={setLayers} />
+      )}
     </Box>
   );
 };
