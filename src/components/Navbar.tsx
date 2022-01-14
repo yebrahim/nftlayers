@@ -64,7 +64,11 @@ export const Navbar: React.FC = () => {
         <TabBar tabs={tabs} activeIndex={selected} onChange={onChange} />
       </Box>
 
-      <Link to="https://github.com/yebrahim/nftlayers">
+      <a
+        href="https://github.com/yebrahim/nftlayers"
+        target="_blank"
+        rel="noreferrer"
+      >
         <Box gap={spacing.$2} alignItems="center" margin={spacing.$5}>
           <img
             src={HelpIcon}
@@ -74,7 +78,7 @@ export const Navbar: React.FC = () => {
           />
           <Text text={Strings.help} bold size={FontSize.LARGE} />
         </Box>
-      </Link>
+      </a>
     </Box>
   );
 };
