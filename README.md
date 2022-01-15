@@ -15,8 +15,9 @@ by browsing the code, searching for `mixpanel`.
 
 As mentioned before, the generation happens entirely on your machine inside your
 browser, so it's limited by the resources on your machine. If you'll be using
-large assets and/or needing to generate a large amount of images, I'd expect
-delays.
+large assets and/or needing to generate a large amount of images, you might find
+this slow to use. I'd love your feedback to know what worked and what didn't
+however, please feel free to reach out on Github.
 
 ## Support
 

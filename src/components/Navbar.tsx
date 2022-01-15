@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Logo from '../assets/logo.svg';
-import HelpIcon from '../assets/help.svg';
+import GithubLogo from '../assets/github-logo.png';
 import { AppRoutes } from '../pages/routes';
 import { Strings } from '../strings';
 import { FontSize, colors, spacing } from '../theme';
@@ -13,9 +13,13 @@ import { Text } from './Text';
 
 const HeroLink = styled(Link)`
   height: 100%;
-  padding: 10px;
+  padding: 10px 20px;
   box-sizing: border-box;
   background-color: ${colors.ACCENT};
+
+  &:hover {
+    filter: brightness(1.1);
+  }
 `;
 
 export const Navbar: React.FC = () => {
@@ -47,6 +51,8 @@ export const Navbar: React.FC = () => {
       boxSizing="border-box"
       backgroundColor={colors.ACCENT_LIGHT}
       justifyContent="space-between"
+      position="fixed"
+      zIndex={9999}
     >
       <Box gap={spacing.$5} alignItems="center">
         <HeroLink to={AppRoutes.DASHBOARD}>
@@ -71,10 +77,11 @@ export const Navbar: React.FC = () => {
       >
         <Box gap={spacing.$2} alignItems="center" margin={spacing.$5}>
           <img
-            src={HelpIcon}
+            src={GithubLogo}
             alt="help"
             height={spacing.$4}
             width={spacing.$4}
+            style={{ filter: 'invert()' }}
           />
           <Text text={Strings.help} bold size={FontSize.LARGE} />
         </Box>

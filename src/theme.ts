@@ -50,4 +50,5 @@ export enum FontSize {
   MEDIUM = '14px',
   LARGE = '16px',
   TITLE = '24px',
+  BANNER = '40px',
 }

@@ -10,6 +10,8 @@ import { newLayerName } from '../lib/utils';
 import { LayerEditor } from './LayerEditor';
 import { LayerRow } from './LayerRow';
 import PlusIcon from '../assets/plus.svg';
+import DownArrow from '../assets/curved-down-arrow.svg';
+import { Text } from '../components/Text';
 
 interface LayersEditorProps {
   layers: Layer[];
@@ -21,11 +23,17 @@ interface EditLayer {
   index: number;
 }
 
-export const LayersEditor: React.FC<LayersEditorProps> = ({ layers, setLayers }) => {
+export const LayersEditor: React.FC<LayersEditorProps> = ({
+  layers,
+  setLayers,
+}) => {
   const [editLayer, setEditLayer] = useState<EditLayer | undefined>();
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
-  const validateLayerName = useCallback((name: string) => name.trim().toLowerCase().length > 0, []);
+  const validateLayerName = useCallback(
+    (name: string) => name.trim().toLowerCase().length > 0,
+    []
+  );
 
   const validateLayer = useCallback(
     () => !!editLayer && validateLayerName(editLayer.layer.name),
@@ -65,7 +73,10 @@ export const LayersEditor: React.FC<LayersEditorProps> = ({ layers, setLayers })
 
   const moveHandler = useCallback(
     (idx: number, dir: 1 | -1) => {
-      if ((idx === 0 && dir === -1) || (idx === layers.length - 1 && dir === 1)) {
+      if (
+        (idx === 0 && dir === -1) ||
+        (idx === layers.length - 1 && dir === 1)
+      ) {
         return;
       }
       const newLayers = [...layers];
@@ -75,7 +86,7 @@ export const LayersEditor: React.FC<LayersEditorProps> = ({ layers, setLayers })
     [layers, setLayers]
   );
 
-  const existingNames = useMemo(() => layers.map(l => l.name), [layers]);
+  const existingNames = useMemo(() => layers.map((l) => l.name), [layers]);
 
   const addNewLayer = useCallback(() => {
     const name = newLayerName(existingNames);
@@ -88,7 +99,11 @@ export const LayersEditor: React.FC<LayersEditorProps> = ({ layers, setLayers })
   return (
     <Box flexDirection="column" gap={spacing.$4}>
       {layers.map((layer: Layer, index: number) => (
-        <Box key={index} border={`solid 1px ${colors.GRAY}`} padding={spacing.$5}>
+        <Box
+          key={index}
+          border={`solid 1px ${colors.GRAY}`}
+          padding={spacing.$5}
+        >
           <Modal
             open={showDeleteDialog}
             onClose={deleteConfirmationHandler}
@@ -99,7 +114,7 @@ export const LayersEditor: React.FC<LayersEditorProps> = ({ layers, setLayers })
           {editLayer?.index === index ? (
             <LayerEditor
               layer={editLayer.layer}
-              setLayer={layer => setEditLayer({ layer, index })}
+              setLayer={(layer) => setEditLayer({ layer, index })}
               onSave={saveLayer}
               onCancel={cancelLayerEdit}
               onDelete={deleteHandler}
@@ -108,7 +123,7 @@ export const LayersEditor: React.FC<LayersEditorProps> = ({ layers, setLayers })
             <LayerRow
               layer={layer}
               onEdit={() => setEditLayer({ layer, index })}
-              onMove={dir => moveHandler(index, dir)}
+              onMove={(dir) => moveHandler(index, dir)}
               upDisabled={index === 0}
               downDisabled={index === layers.length - 1}
               editDisabled={!!editLayer}
@@ -116,6 +131,18 @@ export const LayersEditor: React.FC<LayersEditorProps> = ({ layers, setLayers })
           )}
         </Box>
       ))}
+
+      {layers.length === 0 && (
+        <>
+          <Text text="Start by adding a layer.." marginTop={spacing.$25} />
+          <img
+            src={DownArrow}
+            alt="down arrow"
+            width={spacing.$10}
+            style={{ margin: 'auto' }}
+          />
+        </>
+      )}
 
       <Button
         onClick={addNewLayer}

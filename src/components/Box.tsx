@@ -28,6 +28,7 @@ export interface BoxStyle {
   marginTop?: Property.MarginTop;
   marginBottom?: Property.MarginBottom;
   minHeight?: Property.MinHeight;
+  maxWidth?: Property.MaxWidth;
   minWidth?: Property.MinWidth;
   opacity?: Property.Opacity;
   overflow?: Property.Overflow;
@@ -80,6 +81,7 @@ export const Box: React.FC<BoxProps> = ({
   marginTop = undefined,
   marginBottom = undefined,
   minHeight = undefined,
+  maxWidth = undefined,
   minWidth = undefined,
   opacity = undefined,
   overflow = undefined,
@@ -125,6 +127,7 @@ export const Box: React.FC<BoxProps> = ({
       marginTop: marginTop || margin,
       marginBottom: marginBottom || margin,
       minHeight,
+      maxWidth,
       minWidth,
       opacity,
       overflow,
