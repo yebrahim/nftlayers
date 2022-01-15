@@ -33,6 +33,7 @@ export interface BoxStyle {
   opacity?: Property.Opacity;
   overflow?: Property.Overflow;
   padding?: Property.Padding;
+  pointerEvents?: Property.PointerEvents;
   position?: Property.Position;
   right?: Property.Right;
   textAlign?: Property.TextAlign;
@@ -86,6 +87,7 @@ export const Box: React.FC<BoxProps> = ({
   opacity = undefined,
   overflow = undefined,
   padding = undefined,
+  pointerEvents = undefined,
   position = undefined,
   textAlign = undefined,
   textOverflow = undefined,
@@ -132,6 +134,7 @@ export const Box: React.FC<BoxProps> = ({
       opacity,
       overflow,
       padding,
+      pointerEvents,
       position,
       textAlign,
       textOverflow,
