@@ -20,3 +20,13 @@ export interface GeneratorConfig {
   allowDuplicates: boolean;
   layers: Layer[];
 }
+
+export interface AttributeMetadata {
+  trait_type: string;
+  value: string;
+}
+
+export interface ImageMetadata {
+  image: string;
+  attributes: AttributeMetadata[];
+}

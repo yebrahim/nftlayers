@@ -1,4 +1,4 @@
-import { GeneratorConfig, Layer } from '../types';
+import { GeneratorConfig, ImageMetadata, Layer } from '../types';
 import mergeImages from 'merge-images';
 import JSZip from 'jszip';
 
@@ -9,9 +9,7 @@ export interface PreviewOutput {
 
 export async function preview(config: GeneratorConfig): Promise<PreviewOutput> {
   const indices = config.layers.map(getRandomAssetIndex);
-  const images = config.layers.map(
-    (layer, layerIdx) => layer.assets[indices[layerIdx]].contents
-  );
+  const images = config.layers.map((layer, layerIdx) => layer.assets[indices[layerIdx]].contents);
   return { assetIndices: indices, image: await mergeImages(images) };
 }
 
@@ -23,10 +21,7 @@ export async function generate(
   const hashes: string[] = [];
   const zip = new JSZip();
 
-  const space = config.layers.reduce(
-    (prev, curr) => prev * curr.assets.length,
-    1
-  );
+  const space = config.layers.reduce((prev, curr) => prev * curr.assets.length, 1);
   if (space < config.outputCount && !config.allowDuplicates) {
     return new Error(
       `Too few assets used, will not be able to generate ${config.outputCount} images unless duplicates are allowed.`
@@ -52,20 +47,28 @@ export async function generate(
 
     // If no duplicates are allowed, decrement the weights
     if (!config.allowDuplicates) {
-      config.layers.forEach(
-        (layer, layerIdx) => layer.assets[indices[layerIdx]].weight--
-      );
+      config.layers.forEach((layer, layerIdx) => layer.assets[indices[layerIdx]].weight--);
     }
 
     // Get the assets
-    const assets = config.layers.map(
-      (layer, layerIdx) => layer.assets[indices[layerIdx]].contents
-    );
+    const assets = config.layers.map((layer, layerIdx) => layer.assets[indices[layerIdx]].contents);
 
     // Compose
     const image = await mergeImages(assets);
     const base64 = image.replace(/^data:image\/(png|jpg);base64,/, '');
-    zip.file(`${iterations}.png`, base64, { base64: true });
+    const imageName = `${iterations}.png`;
+
+    zip.file(imageName, base64, { base64: true });
+
+    const metadata: ImageMetadata = {
+      image: imageName,
+      attributes: config.layers.map((layer, layerIdx) => ({
+        trait_type: layer.name,
+        value: layer.assets[indices[layerIdx]].name,
+      })),
+    };
+    const metadataName = `${iterations}_metadata.json`;
+    zip.file(metadataName, JSON.stringify(metadata));
 
     hashes.push(hash);
     progressCb((hashes.length / config.outputCount) * 100);
