@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import EyeExample from '../assets/eye-example.png';
 
 import { Box } from '../components/Box';
 import { Button } from '../components/Button';
@@ -35,7 +36,15 @@ export const HomePage: React.FC = () => {
         <Splitter />
 
         <h1>How it works</h1>
-        <Box textAlign="left" width="fit-content" margin="auto">
+        <Box
+          textAlign="left"
+          width="fit-content"
+          margin="auto"
+          maxWidth={spacing.$120}
+          flexDirection="column"
+          gap={spacing.$5}
+          alignItems="center"
+        >
           <ul>
             <li>
               <h4>Create your layers</h4>
@@ -53,20 +62,22 @@ export const HomePage: React.FC = () => {
               <h4>Hit "Download" and you're done!</h4>
             </li>
           </ul>
-          <Text
-            text="You can also preview images before generating the collection."
-            margin={spacing.$3}
-          />
-          {/* <h4 style={{ fontWeight: 'normal' }}>
-            You can also preview images before generating the collection.
-          </h4> */}
-        </Box>
 
-        <Button
-          mode="primary"
-          title="Take me to the app"
-          onClick={() => navigate(AppRoutes.DASHBOARD)}
-        />
+          <Text text="You can also preview images before generating the collection." />
+
+          <Text
+            text="You can try loading the images from the open source repository here. Play around with
+            the layer ordering. You can get something like this result:"
+          />
+
+          <img src={EyeExample} width="50%" height="50%" alt="eye example" />
+
+          <Button
+            mode="primary"
+            title="Take me to the app"
+            onClick={() => navigate(AppRoutes.DASHBOARD)}
+          />
+        </Box>
 
         <Splitter />
 
@@ -110,20 +121,12 @@ export const HomePage: React.FC = () => {
 
         <h4>
           Found this useful? Give a shoutout on
-          <a
-            href="https://github.com/yebrahim/nftlayers"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href="https://github.com/yebrahim/nftlayers" target="_blank" rel="noreferrer">
             {' '}
             <Text text="Github" bold underline />
           </a>
           , or consider
-          <a
-            href="https://www.buymeacoffee.com/yelsayed"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href="https://www.buymeacoffee.com/yelsayed" target="_blank" rel="noreferrer">
             {' '}
             <Text text="buying me a coffee." bold underline />
           </a>

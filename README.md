@@ -3,6 +3,9 @@
 A free image generator that uses assets sorted into layers and given weights to
 generate a set of images to be used as an NFT collection.
 
+![Screenshot of the app](src/assets/app-screenshot.png)
+_Assets obtained from the open source repo [Node-NFT-generator](https://github.com/EECvision/Node-NFT-generator/)_
+
 ## Privacy and Data collection
 
 This is a static web app, meaning it has no backend, and your image assets do

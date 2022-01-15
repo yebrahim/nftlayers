@@ -1,6 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
 
-import TrashIcon from '../assets/trash.svg';
 import { Box } from '../components/Box';
 import { Button } from '../components/Button';
 import { FileSelector } from '../components/FileSelector';
@@ -79,7 +78,7 @@ export const LayerEditor: React.FC<LayerEditorProps> = props => {
         </Box>
 
         <Box gap={spacing.$3}>
-          <Button mode="danger" icon={TrashIcon} onClick={onDelete} title={Strings.delete_layer} />
+          <Button mode="danger" onClick={onDelete} title={Strings.delete_layer} />
           <Button onClick={onSave} title={Strings.save} />
           <Button onClick={onCancel} title={Strings.cancel} />
         </Box>

@@ -12,7 +12,7 @@ export const colors = {
   WHITE: '#fff',
   IVORY: '#dedede',
   BLACK: '#000',
-  DANGER: '#520404',
+  DANGER: '#e52b2b',
 };
 
 export const spacing = {

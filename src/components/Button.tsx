@@ -5,20 +5,22 @@ import { colors, rounding, spacing } from '../theme';
 import { Box } from './Box';
 import { BoxStyle } from './Box';
 
+type Mode = 'primary' | 'secondary' | 'danger';
+
 export interface ButtonProps extends BoxStyle {
   title?: string;
-  mode?: 'primary' | 'secondary' | 'danger';
+  mode?: Mode;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
   icon?: string;
 }
 
-const Container = styled.button<{ bg: string; iconOnly: boolean }>`
+const Container = styled.button<{ bg: string; iconOnly: boolean; mode: Mode }>`
   background-color: ${props => props.bg};
   border-radius: ${props => (props.iconOnly ? '50%' : rounding.SMALL)};
   border: solid 1px rebeccapurple;
   box-shadow: ${colors.SHADOW} 0 0 15px 0px;
-  color: ${colors.WHITE};
+  color: ${props => (props.mode === 'danger' ? colors.DANGER : colors.WHITE)};
   cursor: pointer;
   font-weight: bold;
   height: ${props => (props.iconOnly ? '30px' : '35px')};
@@ -59,16 +61,11 @@ export const Button: React.FC<ButtonProps> = ({
   return (
     <Box {...other}>
       <Container
-        bg={
-          mode === 'primary'
-            ? colors.ACCENT
-            : mode === 'secondary'
-            ? colors.DARK_GRAY
-            : colors.DANGER
-        }
+        bg={mode === 'primary' ? colors.ACCENT : colors.DARK_GRAY}
         iconOnly={!title && !!icon}
         onClick={clickHandler}
         disabled={disabled}
+        mode={mode}
         {...other}
       >
         <Box gap={spacing.$2} alignItems="center" justifyContent="center" whiteSpace="nowrap">
