@@ -116,7 +116,7 @@ export const HomePage: React.FC = () => {
             rel="noreferrer"
           >
             {' '}
-            <Text text="Github" underline />
+            <Text text="Github" bold underline />
           </a>
           , or consider
           <a
@@ -125,7 +125,7 @@ export const HomePage: React.FC = () => {
             rel="noreferrer"
           >
             {' '}
-            <Text text="buying me a coffee." underline />
+            <Text text="buying me a coffee." bold underline />
           </a>
         </h4>
       </Box>
