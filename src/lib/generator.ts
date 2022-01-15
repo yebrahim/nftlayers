@@ -50,10 +50,12 @@ export async function generate(
       continue;
     }
 
-    // Decrement the weights
-    config.layers.forEach(
-      (layer, layerIdx) => layer.assets[indices[layerIdx]].weight--
-    );
+    // If no duplicates are allowed, decrement the weights
+    if (!config.allowDuplicates) {
+      config.layers.forEach(
+        (layer, layerIdx) => layer.assets[indices[layerIdx]].weight--
+      );
+    }
 
     // Get the assets
     const assets = config.layers.map(
