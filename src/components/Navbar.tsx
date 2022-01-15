@@ -2,7 +2,7 @@ import React, { useCallback, useMemo } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import Logo from '../assets/logo.png';
+import Logo from '../assets/logo.svg';
 import HelpIcon from '../assets/help.svg';
 import { AppRoutes } from '../pages/routes';
 import { Strings } from '../strings';
