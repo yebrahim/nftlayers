@@ -74,7 +74,15 @@ export const ImageGenerator: React.FC = () => {
     localStorage.setItem(PERSISTENCE_KEY, JSON.stringify(config));
   }, [allowDuplicates, outputCount, config, layers]);
 
-  const previewCallback = useCallback(async () => setOpenPreview(true), []);
+  const previewCallback = useCallback(async () => {
+    const err = validateConfig(config);
+    if (err) {
+      alert(err);
+      return;
+    }
+
+    setOpenPreview(true);
+  }, [config]);
 
   const exportCallback = useCallback(async () => {
     const err = validateConfig(config);
