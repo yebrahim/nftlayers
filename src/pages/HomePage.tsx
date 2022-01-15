@@ -65,10 +65,18 @@ export const HomePage: React.FC = () => {
 
           <Text text="You can also preview images before generating the collection." />
 
-          <Text
-            text="You can try loading the images from the open source repository here. Play around with
-            the layer ordering. You can get something like this result:"
-          />
+          <p>
+            You can try loading the images from the
+            <a
+              href="https://github.com/yebrahim/nftlayers/tree/main/examples"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {' '}
+              <Text text="open source repository" bold underline />
+            </a>
+            . Play around with the layer ordering. You can get something like this result:
+          </p>
 
           <img src={EyeExample} width="50%" height="50%" alt="eye example" />
 
