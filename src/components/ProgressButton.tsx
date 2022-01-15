@@ -1,6 +1,8 @@
 import React from 'react';
-import { colors, rounding } from '../theme';
+import { Strings } from '../strings';
+import { colors, FontSize, rounding } from '../theme';
 import { Box, BoxStyle } from './Box';
+import { Text } from './Text';
 
 interface ProgressButtonProps extends BoxStyle {
   percentage: number;
@@ -9,13 +11,20 @@ interface ProgressButtonProps extends BoxStyle {
 export const ProgressButton: React.FC<ProgressButtonProps> = ({
   percentage,
   ...others
-}) => (
-  <Box backgroundColor={colors.GRAY} borderRadius={rounding.SMALL} {...others}>
+}) =>
+  percentage === 100 ? (
+    <Text size={FontSize.MEDIUM} text={Strings.zipping} />
+  ) : (
     <Box
+      backgroundColor={colors.GRAY}
       borderRadius={rounding.SMALL}
-      backgroundColor={colors.ACCENT}
-      height="100%"
-      width={`${percentage}%`}
-    />
-  </Box>
-);
+      {...others}
+    >
+      <Box
+        borderRadius={rounding.SMALL}
+        backgroundColor={colors.ACCENT}
+        height="100%"
+        width={`${percentage}%`}
+      />
+    </Box>
+  );

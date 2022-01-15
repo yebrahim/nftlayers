@@ -20,5 +20,6 @@ export const Strings = {
   output_count: 'Images to generate:',
   allow_duplicates: 'Allow duplicates',
   use_bright_bg: 'Bright background',
+  zipping: 'Compressing...',
   help: 'Help',
 };
