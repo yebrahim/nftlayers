@@ -65,7 +65,7 @@ export const HomePage: React.FC = () => {
 
           <Text text="You can also preview images before generating the collection." />
 
-          <p>
+          <span>
             You can try loading the images from the
             <a
               href="https://github.com/yebrahim/nftlayers/tree/main/examples"
@@ -76,7 +76,7 @@ export const HomePage: React.FC = () => {
               <Text text="open source repository" bold underline />
             </a>
             . Play around with the layer ordering. You can get something like this result:
-          </p>
+          </span>
 
           <img src={EyeExample} width="50%" height="50%" alt="eye example" />
 
@@ -89,7 +89,7 @@ export const HomePage: React.FC = () => {
 
         <Splitter />
 
-        <Box gap={spacing.$20} justifyContent="center">
+        <Box gap={spacing.$20} justifyContent="center" flexWrap="wrap">
           <Box maxWidth={spacing.$100}>
             <h1>Privacy</h1>
             <Text
